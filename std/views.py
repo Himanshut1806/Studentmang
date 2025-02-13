@@ -3,27 +3,23 @@ from . models import Student
 from django.contrib import messages
 
 
-# Create your views here.
-
 def home(request):
-    std=Student.objects.all()
+    std=Student.objects.all()  # Retrieves all 'Student' objects from the database using the 'objects.all' method of student model.
     print(std)
-    # messages.add_message(request, messages.SUCCESS,'Your Account has been Created Successfully !!!')
-
     return render(request,"std/home.html",{'std':std})
 
 def std_add(request):
     if request.method=='POST':
         print("Added Successfully")
      #retrieve the user inputs
-        stds_roll=request.POST.get("std_roll")
-        stds_name=request.POST.get("std_name")
-        stds_email=request.POST.get("std_email")
+        stds_roll=request.POST.get("std_roll")         # Retrieves the value of the std_roll field from the POST data.
+        stds_name=request.POST.get("std_name")         # Request_post is a dictionary like object containing the data submitted in the form.
+        stds_email=request.POST.get("std_email")       # The get() method retrieves the value associated with the key 'std_roll'.
         stds_mobile=request.POST.get("std_mobile")
         stds_address=request.POST.get("std_address")
 
         #create an objects for models
-        s=Student()
+        s=Student()              # Creates a new instances of the 'Student' model. This creates an empty Student object in memory.
         s.roll=stds_roll
         s.name=stds_name
         s.email=stds_email
@@ -36,7 +32,7 @@ def std_add(request):
     return render(request,"std/add_std.html",{})
 
 def delete_std(request,roll):
-    s=Student.objects.get(pk=roll)
+    s=Student.objects.get(pk=roll)    # Retrieves the 'Student' object from the database whose primary key(pk) matches the provided 'roll' value.
     s.delete()
     messages.add_message(request, messages.SUCCESS,'Your Account has been Deleted Successfully !!!')
     return redirect("/")
