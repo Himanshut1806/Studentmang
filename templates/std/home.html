@@ -34,7 +34,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  {% for s in std %}        <!--std is the name of the list that is being passed from you django view to the template-->
+                  {% for s in std %}        <!-- s is the any variable. std is the name of the list that is being passed from you django view to the template-->
                   <tr>
                     <td>{{forloop.counter}}</td>  <!--td is table data cell  for loop counter is a django template variable that provides the current loop iteration number-->
                     <td>{{s.roll}}</td>

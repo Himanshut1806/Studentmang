@@ -6,12 +6,13 @@ from django.contrib import messages
 def home(request):
     std=Student.objects.all()  # Retrieves all 'Student' objects from the database using the 'objects.all' method of student model.
     print(std)
-    return render(request,"std/home.html",{'std':std})
+    return render(request,"std/home.html",{'std':std})  #({'std': std}):The context dictionary contains key-value pairs where keys represent variable names accessible in the template, 
+                                                        #and values are the data passed from the view.
 
 def std_add(request):
     if request.method=='POST':
         print("Added Successfully")
-     #retrieve the user inputs
+        # retrieve the user inputs
         stds_roll=request.POST.get("std_roll")         # Retrieves the value of the std_roll field from the POST data.
         stds_name=request.POST.get("std_name")         # Request_post is a dictionary like object containing the data submitted in the form.
         stds_email=request.POST.get("std_email")       # The get() method retrieves the value associated with the key 'std_roll'.
